@@ -12,7 +12,7 @@ label {
   text-align: center;
   font-size: 27px;
   line-height: 40px;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 .search-input {
@@ -24,17 +24,19 @@ label {
   border: 1px solid;
   border-color: #666666;
   border-radius: 5px 0px 0px 5px;
+  box-shadow: 5px 5px 0px 0px #feb46b;
 }
 
 .search-button {
   height: 42px;
   width: 120px;
-  background: #cd6326;
+  background: linear-gradient(180deg, #fd6a63, #feb46b 100%, #ffffff 0, #ffffff);
   border: #cd6326;
   border-radius: 0px 5px 5px 0px;
   font-size: 23px;
   color: #f7f7f7;
   cursor: pointer;
+  box-shadow: 5px 5px 0px 0px #666666;
 }
 
 form:hover,

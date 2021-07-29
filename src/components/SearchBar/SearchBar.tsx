@@ -15,7 +15,9 @@ const SearchBar = () => {
           placeholder="Search"
           name="s"
         />
-        <input className="search-button" type="submit" value="Send" />
+        <button type="submit" className="search-button">
+          Search
+        </button>
       </form>
     </div>
   );
