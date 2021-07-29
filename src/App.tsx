@@ -1,10 +1,27 @@
 import './styles.scss';
 import SearchBar from './components/SearchBar/SearchBar';
+import { Card } from './components/Card/Card';
+import { store } from './store/store';
+
+console.log(store.cards);
 
 export const App = () => {
   return (
     <>
       <SearchBar />
+      <div className="card-wrapper">
+        {store.cards.map((card) => {
+          return (
+            <Card
+              name={card.name}
+              weight={card.weight}
+              image={card.image}
+              price={card.price}
+              country={card.country}
+            />
+          );
+        })}
+      </div>
     </>
   );
 };
