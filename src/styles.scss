@@ -6,3 +6,12 @@
 html {
   font-size: 22px;
 }
+
+.card-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1440px;
+  justify-content: center;
+  padding-top: 20px;
+  margin: 0 auto;
+}
