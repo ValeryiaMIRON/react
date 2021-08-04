@@ -11,7 +11,7 @@ export const App = () => {
       <ReactForm setFormValues={setFormValues} />
       <main>
         {formValues.map((card, index) => {
-          return <Card card={card} key={index} />;
+          return <Card card={card} key={index.toString()} />;
         })}
       </main>
     </>
