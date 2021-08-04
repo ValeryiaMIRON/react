@@ -1,7 +1,7 @@
 export type CardType = {
   name: string;
   surname: string;
-  deliveryType1: string | boolean;
+  deliveryType: string | boolean;
   deliveryDate: string;
   typePayment: string | undefined;
   checkbox: boolean;

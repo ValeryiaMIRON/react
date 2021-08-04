@@ -20,7 +20,7 @@ export const Card: FC<cardProps> = ({ card }) => {
       </div>
       <div>
         <span style={{ color: 'black' }}>Delivery type: </span>
-        {card.deliveryType1}
+        {card.deliveryType}
       </div>
       <div>
         <span style={{ color: 'black' }}>Type of payment:</span>
