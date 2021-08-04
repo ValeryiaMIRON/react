@@ -1,7 +1,8 @@
 import './Card.scss';
-import { CardType } from './../../types/types';
+import { cardProps } from './../../types/types';
+import { FC } from 'react';
 
-export const Card = ({ card }: CardType) => {
+export const Card: FC<cardProps> = ({ card }) => {
   return (
     <div className="card">
       <div>
