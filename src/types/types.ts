@@ -7,7 +7,7 @@ export type CardType = {
   checkbox: boolean;
 };
 
-export type cardProps = {
+export type CardProps = {
   card: CardType;
 };
 

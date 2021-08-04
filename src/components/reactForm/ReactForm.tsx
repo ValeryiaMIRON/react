@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import './ReactForm.scss';
-import { Props } from './../../types/types';
+import { Props } from '../../types/types';
 
 const ReactForm: FC<Props> = ({ setFormValues }) => {
   const [name, setName] = useState('');
@@ -13,9 +13,9 @@ const ReactForm: FC<Props> = ({ setFormValues }) => {
   const [nameDirty, setNameDirty] = useState(false);
   const [surnameDirty, setSurnameDirty] = useState(false);
   const [checkboxDirty, setCheckboxDirty] = useState(false);
-  const [deliveryTypeDirty, setDeliveryTypeDirty] = useState(false);
+  const [deliveryTypeDirty] = useState(false);
   const [deliveryDateDirty, setDeliveryDateDirty] = useState(false);
-  const [typePaymentDirty, setTypePaymentDirty] = useState(false);
+  const [typePaymentDirty] = useState(false);
 
   const [nameError, setNameError] = useState('Fill in the field');
   const [surnameError, setSurnameError] = useState('Fill in the field');
@@ -25,21 +25,9 @@ const ReactForm: FC<Props> = ({ setFormValues }) => {
   const [typePaymentError, setTypePaymentError] = useState('Fill in the field');
 
   const [formValid, setFormValid] = useState(false);
-
-  const handleSubmit = (event: { preventDefault: () => void }) => {
-    event.preventDefault();
-
-    setFormValues((state) => [
-      ...state,
-      { name, surname, deliveryDate, deliveryType, checkbox, typePayment },
-    ]);
-    snackbar();
-    reset();
-  };
-
   const snackbar = () => {
     // Get the snackbar DIV
-    var toast = document.getElementById('snackbar');
+    const toast = document.getElementById('snackbar');
 
     // Add the "show" class to DIV
     if (toast) {
@@ -48,7 +36,7 @@ const ReactForm: FC<Props> = ({ setFormValues }) => {
 
     // After 3 seconds, remove the show class from DIV
 
-    setTimeout(function () {
+    setTimeout(function time() {
       if (toast?.className) {
         toast.className = toast?.className.replace('show', '');
       }
@@ -62,6 +50,17 @@ const ReactForm: FC<Props> = ({ setFormValues }) => {
     setDeliveryDate('');
     setName('');
     setSurname('');
+  };
+
+  const handleSubmit = (event: { preventDefault: () => void }) => {
+    event.preventDefault();
+
+    setFormValues((state) => [
+      ...state,
+      { name, surname, deliveryDate, deliveryType, checkbox, typePayment },
+    ]);
+    snackbar();
+    reset();
   };
 
   useEffect(() => {
@@ -157,14 +156,18 @@ const ReactForm: FC<Props> = ({ setFormValues }) => {
       case 'deliveryDate':
         setDeliveryDateDirty(true);
         break;
+      default:
+      // unknown type! based on the language,
+      // there should probably be some error-handling
+      // here, maybe an exception
     }
   };
 
   return (
     <div>
-      <form className={'form'} onSubmit={handleSubmit}>
+      <form className="form" onSubmit={handleSubmit}>
         {nameDirty && nameError && <div style={{ color: 'red' }}>{nameError}</div>}
-        <label>
+        <label htmlFor="name">
           Name:
           <input
             onChange={(e) => nameHandler(e)}
@@ -173,11 +176,10 @@ const ReactForm: FC<Props> = ({ setFormValues }) => {
             type="text"
             name="name"
             required
-          ></input>
+          />
         </label>{' '}
-        {''}
         {surnameDirty && surnameError && <div style={{ color: 'red' }}>{surnameError}</div>}
-        <label>Surname:</label>{' '}
+        <label htmlFor="surname">Surname:</label>{' '}
         <input
           onChange={(e) => surnameHandler(e)}
           value={surname}
@@ -215,7 +217,6 @@ const ReactForm: FC<Props> = ({ setFormValues }) => {
             checked={deliveryType === 'contact delivery'}
             required
           />
-          {''}
           contactless delivery
           <input
             className="radio"
@@ -226,7 +227,6 @@ const ReactForm: FC<Props> = ({ setFormValues }) => {
             checked={deliveryType === 'contactless delivery'}
             required
           />
-          {''}
         </div>
         {typePaymentDirty && typePaymentError && (
           <div style={{ color: 'red' }}>{typePaymentError}</div>
@@ -237,6 +237,7 @@ const ReactForm: FC<Props> = ({ setFormValues }) => {
             required
             name="typepayment"
             value={typePayment}
+            onBlur={(e) => typePaymentHandler(e)}
             onChange={(e) => typePaymentHandler(e)}
           >
             <option value="">select the type of payment</option>
@@ -259,7 +260,7 @@ const ReactForm: FC<Props> = ({ setFormValues }) => {
             required
           />
         </div>
-        <button id="submit" type="submit">
+        <button disabled={!formValid} id="submit" type="submit">
           Submit
         </button>
       </form>

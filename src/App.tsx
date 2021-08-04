@@ -1,7 +1,7 @@
 import './styles.scss';
-import ReactForm from './components/reactForm/ReactForm';
-import Card from './components/card/Card';
 import { useState } from 'react';
+import ReactForm from './components/reactForm/ReactForm';
+import { Card } from './components/card/Card';
 import { CardType } from './types/types';
 
 export const App = () => {
