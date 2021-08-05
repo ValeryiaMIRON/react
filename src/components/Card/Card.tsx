@@ -1,7 +1,9 @@
 import React from 'react';
 import './card.scss';
 
-export const Card = (props: {
+/* eslint-disable react/destructuring-assignment */
+
+const Card = (props: {
   image: string | undefined;
   name: React.ReactNode;
   weight: React.ReactNode;
@@ -18,3 +20,5 @@ export const Card = (props: {
     </div>
   );
 };
+
+export default Card;

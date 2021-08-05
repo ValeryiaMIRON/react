@@ -1,7 +1,7 @@
 import './styles.scss';
 import SearchBar from './components/SearchBar/SearchBar';
-import { Card } from './components/Card/Card';
-import { store } from './store/store';
+import Card from './components/Card/Card';
+import store from './store/store';
 
 export const App = () => {
   return (
@@ -11,7 +11,7 @@ export const App = () => {
         {store.cards.map((card, index) => {
           return (
             <Card
-              key={index}
+              key={index.toString()}
               name={card.name}
               weight={card.weight}
               image={card.image}

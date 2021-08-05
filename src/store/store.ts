@@ -1,6 +1,7 @@
 // import React from 'react';
 import { Store } from '../types/types';
-export const store: Store = {
+
+const store: Store = {
   cards: [
     {
       name: 'Apricot',
@@ -60,3 +61,5 @@ export const store: Store = {
     },
   ],
 };
+
+export default store;
