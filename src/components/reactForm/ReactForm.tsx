@@ -25,16 +25,21 @@ const ReactForm: FC<Props> = ({ setFormValues }) => {
   const [typePaymentError, setTypePaymentError] = useState('Fill in the field');
 
   const [formValid, setFormValid] = useState(false);
+
+  const calendar = () => {
+    const today = new Date();
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const yyyy = today.getFullYear();
+    return `${yyyy}-${mm}-${dd}`;
+  };
+
   const snackbar = () => {
-    // Get the snackbar DIV
     const toast = document.getElementById('snackbar');
 
-    // Add the "show" class to DIV
     if (toast) {
       toast.className = 'show';
     }
-
-    // After 3 seconds, remove the show class from DIV
 
     setTimeout(function time() {
       if (toast?.className) {
@@ -126,13 +131,18 @@ const ReactForm: FC<Props> = ({ setFormValues }) => {
 
   const dateHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDeliveryDate(e.target.value);
-    if (new Date(e.target.value).getDate() < new Date().getDate()) {
-      setDeliveryDateError('Сhoose correct date');
-    } else if (new Date(e.target.value).getMonth() < new Date().getMonth()) {
+    if (!e.target.value) {
       setDeliveryDateError('Сhoose correct date');
     } else {
       setDeliveryDateError('');
     }
+    // if (new Date(e.target.value).getDate() < new Date().getDate()) {
+    //   setDeliveryDateError('Сhoose correct date');
+    // } else if (new Date(e.target.value).getMonth() < new Date().getMonth()) {
+    //   setDeliveryDateError('Сhoose correct date');
+    // } else {
+    //   setDeliveryDateError('');
+    // }
   };
 
   const typePaymentHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -199,6 +209,7 @@ const ReactForm: FC<Props> = ({ setFormValues }) => {
           onBlur={(e) => blurHandler(e)}
           id="deliveryDate"
           name="deliveryDate"
+          min={calendar()}
           value={deliveryDate}
           required
         />
