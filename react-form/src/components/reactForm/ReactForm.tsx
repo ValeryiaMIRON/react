@@ -25,7 +25,6 @@ const ReactForm: FC<Props> = ({ setFormValues }) => {
   const [typePaymentError, setTypePaymentError] = useState('Fill in the field');
 
   const [formValid, setFormValid] = useState(false);
-
   const calendar = () => {
     const today = new Date();
     const dd = String(today.getDate()).padStart(2, '0');
