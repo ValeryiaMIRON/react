@@ -15,6 +15,14 @@ const SearchBar: FC<Props> = ({ setState }) => {
   const [from, setFrom] = useState('');
   const [to, setTo] = useState('');
 
+  const calendar = () => {
+    const today = new Date();
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const yyyy = today.getFullYear();
+    return `${yyyy}-${mm}-${dd}`;
+  };
+
   const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
@@ -52,13 +60,9 @@ const SearchBar: FC<Props> = ({ setState }) => {
             placeholder="pie"
           />
         </label>
-        <button type="submit" className="search-button" id="submit" disabled={isLoading}>
-          {isLoading ? 'Loading...' : 'Search'}
-        </button>
         <div className="radioBtn">
           <label htmlFor="SortBy">Sort by: </label>
           <label htmlFor="relevancy">
-            relevancy
             <input
               name="relevancy"
               type="radio"
@@ -66,9 +70,9 @@ const SearchBar: FC<Props> = ({ setState }) => {
               checked={sortBy === SortType.relevancy}
               onChange={() => setSortBy(SortType.relevancy)}
             />
+            relevancy
           </label>
           <label htmlFor="popularity">
-            popularity
             <input
               name="popularity"
               type="radio"
@@ -76,9 +80,9 @@ const SearchBar: FC<Props> = ({ setState }) => {
               checked={sortBy === SortType.popularity}
               onChange={() => setSortBy(SortType.popularity)}
             />
+            popularity
           </label>
           <label htmlFor="publishedAt">
-            publishedAt
             <input
               name="publishedAt"
               type="radio"
@@ -86,6 +90,7 @@ const SearchBar: FC<Props> = ({ setState }) => {
               checked={sortBy === SortType.publishedAt}
               onChange={() => setSortBy(SortType.publishedAt)}
             />
+            publishedAt
           </label>
         </div>
         <div className="date">
@@ -95,13 +100,23 @@ const SearchBar: FC<Props> = ({ setState }) => {
               type="date"
               name="dateFrom"
               value={from}
+              max={calendar()}
               onChange={(e) => setFrom(e.target.value)}
             />
           </label>
           <label htmlFor="dateTo">
-            to: <input type="date" value={to} onChange={(e) => setTo(e.target.value)} />
+            to:{' '}
+            <input
+              type="date"
+              max={calendar()}
+              value={to}
+              onChange={(e) => setTo(e.target.value)}
+            />
           </label>
         </div>
+        <button type="submit" className="search-button" id="submit" disabled={isLoading}>
+          {isLoading ? 'Loading...' : 'Search'}
+        </button>
       </form>
     </div>
   );
