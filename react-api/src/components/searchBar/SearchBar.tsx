@@ -12,13 +12,15 @@ const SearchBar: FC<Props> = ({ setState }) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const [sortBy, setSortBy] = useState<SortType>(SortType.relevancy);
+  const [from, setFrom] = useState('');
+  const [to, setTo] = useState('');
 
   const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
     try {
       const response: AxiosResponse<GET200_Articles> = await axiosInstance.get(
-        `v2/everything?q=${searchValue}&apiKey=${API_KEY}&sortBy=${sortBy}`,
+        `v2/everything?q=${searchValue}&apiKey=${API_KEY}&sortBy=${sortBy}&from=${from}&to=${to}`,
       );
       setState(response.data.articles);
 
@@ -84,6 +86,20 @@ const SearchBar: FC<Props> = ({ setState }) => {
               checked={sortBy === SortType.publishedAt}
               onChange={() => setSortBy(SortType.publishedAt)}
             />
+          </label>
+        </div>
+        <div className="date">
+          <label htmlFor="dateFrom">
+            from:{' '}
+            <input
+              type="date"
+              name="dateFrom"
+              value={from}
+              onChange={(e) => setFrom(e.target.value)}
+            />
+          </label>
+          <label htmlFor="dateTo">
+            to: <input type="date" value={to} onChange={(e) => setTo(e.target.value)} />
           </label>
         </div>
       </form>
