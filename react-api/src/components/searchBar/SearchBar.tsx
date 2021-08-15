@@ -2,26 +2,14 @@ import { AxiosResponse } from 'axios';
 import React, { ChangeEvent, FC, useState } from 'react';
 import axiosInstance from '../../services/api';
 import './searchBar.scss';
-import { Props, GET200_Articles, SortType } from '../../types/types';
+import { Props, GET200_Articles } from '../../types/types';
 
 // const API_KEY = '6acc09f802644746b9fafbaeda30a3d6';
 const API_KEY = 'cae8d4a0c7904ac88d9df23b23d9974e';
 
-const SearchBar: FC<Props> = ({ setState }) => {
+const SearchBar: FC<Props> = ({ setState, sortBy, to, from }) => {
   const [searchValue, setSearchValue] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
-
-  const [sortBy, setSortBy] = useState<SortType>(SortType.relevancy);
-  const [from, setFrom] = useState('');
-  const [to, setTo] = useState('');
-
-  const calendar = () => {
-    const today = new Date();
-    const dd = String(today.getDate()).padStart(2, '0');
-    const mm = String(today.getMonth() + 1).padStart(2, '0');
-    const yyyy = today.getFullYear();
-    return `${yyyy}-${mm}-${dd}`;
-  };
 
   const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -31,15 +19,12 @@ const SearchBar: FC<Props> = ({ setState }) => {
         `v2/everything?q=${searchValue}&apiKey=${API_KEY}&sortBy=${sortBy}&from=${from}&to=${to}`,
       );
       setState(response.data.articles);
-
-      // return response;
     } catch (err: any) {
       // console.error(e);
     } finally {
       setIsLoading(false);
     }
   };
-  // console.log('state', state);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -60,63 +45,11 @@ const SearchBar: FC<Props> = ({ setState }) => {
             placeholder="pie"
           />
         </label>
-        <div className="radioBtn">
-          <label htmlFor="SortBy">Sort by: </label>
-          <label htmlFor="relevancy">
-            <input
-              name="relevancy"
-              type="radio"
-              value={SortType.relevancy}
-              checked={sortBy === SortType.relevancy}
-              onChange={() => setSortBy(SortType.relevancy)}
-            />
-            relevancy
-          </label>
-          <label htmlFor="popularity">
-            <input
-              name="popularity"
-              type="radio"
-              value={SortType.popularity}
-              checked={sortBy === SortType.popularity}
-              onChange={() => setSortBy(SortType.popularity)}
-            />
-            popularity
-          </label>
-          <label htmlFor="publishedAt">
-            <input
-              name="publishedAt"
-              type="radio"
-              value={SortType.publishedAt}
-              checked={sortBy === SortType.publishedAt}
-              onChange={() => setSortBy(SortType.publishedAt)}
-            />
-            publishedAt
-          </label>
+        <div className="button-wrapper">
+          <button type="submit" className="search-button" id="submit" disabled={isLoading}>
+            {isLoading ? 'Loading...' : 'Search'}
+          </button>
         </div>
-        <div className="date">
-          <label htmlFor="dateFrom">
-            from:{' '}
-            <input
-              type="date"
-              name="dateFrom"
-              value={from}
-              max={calendar()}
-              onChange={(e) => setFrom(e.target.value)}
-            />
-          </label>
-          <label htmlFor="dateTo">
-            to:{' '}
-            <input
-              type="date"
-              max={calendar()}
-              value={to}
-              onChange={(e) => setTo(e.target.value)}
-            />
-          </label>
-        </div>
-        <button type="submit" className="search-button" id="submit" disabled={isLoading}>
-          {isLoading ? 'Loading...' : 'Search'}
-        </button>
       </form>
     </div>
   );
