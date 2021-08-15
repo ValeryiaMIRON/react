@@ -4,7 +4,7 @@ import React, { FC, Suspense } from 'react';
 import { Switch, Route, Redirect, BrowserRouter } from 'react-router-dom';
 // import Posts from './pages/Posts';
 import './styles.scss';
-import Dashboard from './pages/DashBoard';
+import Dashboard from './pages/Dashboard';
 
 const navData = [
   {
