@@ -1,18 +1,19 @@
 .search-bar {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   color: #666666;
-  align-items: center;
+  // align-items: center;
   text-align: center;
   justify-content: center;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
-.radioBtn label {
+.radioBtn > label {
   text-align: center;
   font-size: 27px;
   line-height: 40px;
-  margin-right: 5px;
+  margin-right: 10px;
 }
 
 .search-input {
@@ -23,8 +24,9 @@
   padding-left: 15px;
   border: 1px solid;
   border-color: #666666;
-  border-radius: 5px 0px 0px 5px;
+  border-radius: 5px;
   box-shadow: 5px 5px 0px 0px #feb46b;
+  margin-top: 10px;
 }
 
 .search-button {
@@ -32,11 +34,20 @@
   width: 120px;
   background: linear-gradient(180deg, #fd6a63, #feb46b 100%, #ffffff 0, #ffffff);
   border: #cd6326;
-  border-radius: 0px 5px 5px 0px;
+  border-radius: 5px;
   font-size: 23px;
   color: #f7f7f7;
   cursor: pointer;
   box-shadow: 5px 5px 0px 0px #666666;
+
+  margin-top: 110px;
+
+  position: absolute;
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: center;
 }
 
 form:hover,
@@ -45,8 +56,8 @@ form:active {
   opacity: 0.75;
 }
 
-.radioBtn {
-  margin-top: 20px;
+.radioBtn input {
+  margin-right: 5px;
 }
 
 .date label {
