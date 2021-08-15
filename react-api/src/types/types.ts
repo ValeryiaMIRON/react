@@ -9,20 +9,32 @@ export interface Article {
   urlToImage: string;
 }
 
-export type CardProps = {
+export interface CardProps {
   card: Article;
-};
+}
 
 export interface GET200_Articles {
   articles: Article[];
 }
 
-export type Props = {
+export interface Props {
   setState: React.Dispatch<React.SetStateAction<Article[]>>;
-};
+  sortBy: SortType;
+  to: string;
+  from: string;
+}
 
 export enum SortType {
   relevancy = 'relevancy',
   popularity = 'popularity',
   publishedAt = 'publishedAt',
+}
+
+export interface SortProps {
+  sortBy: SortType;
+  setSortBy: (sortBy: SortType) => void;
+  from: string;
+  setFrom: (from: string) => void;
+  to: string;
+  setTo: (to: string) => void;
 }
