@@ -48,6 +48,7 @@ export interface paginationProps {
   // totalCard: number;
   paginate: (pageNumber: number) => void;
   articles: Article[];
+  setPageSize: (pageSize: number) => void;
 }
 
 // export interface paginationProps {

@@ -5,19 +5,14 @@
 
 .pagination-pageNumber {
   display: flex;
-  justify-content: center;
-  //padding-top: 20px;
-  // position: absolute;
-  margin-bottom: 20px;
+  margin-right: 20px;
 }
 
-// .pagination {
+.pagination-wrapper {
+  display: flex;
+  justify-content: center;
+}
 
-// }
-
-// span {
-//   border: 1px solid #5555;
-//   width: 30px;
-//   height: 30px;
-//   text-align: center;
-// }
+.no {
+  display: none;
+}

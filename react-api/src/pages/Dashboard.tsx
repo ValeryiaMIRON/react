@@ -11,13 +11,7 @@ const Dashboard = () => {
   const [from, setFrom] = useState('');
   const [to, setTo] = useState('');
   const [page, setPage] = useState<number>(1);
-  const [pageSize] = useState<number>(10);
-  // const [pageArr] = useState([]);
-  // const totalCard = useState<number>(state.length);
-
-  // const lastCardIndex = page * pageSize;
-  // const firstCardIndex = lastCardIndex - pageSize;
-  // const currentCard = state.slice(firstCardIndex, lastCardIndex);
+  const [pageSize, setPageSize] = useState<number>(5);
   const paginate = (pageNumber: number) => setPage(pageNumber);
 
   return (
@@ -44,6 +38,7 @@ const Dashboard = () => {
         pageSize={pageSize}
         onChangePage={(pageFromInput: number) => setPage(pageFromInput)}
         paginate={paginate}
+        setPageSize={setPageSize}
       />
       {state.map((card, index) => {
         return <Card key={index.toString()} card={card} />;

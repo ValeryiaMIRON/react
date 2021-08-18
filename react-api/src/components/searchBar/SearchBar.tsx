@@ -4,12 +4,15 @@ import axiosInstance from '../../services/api';
 import './searchBar.scss';
 import { Props, GET200_Articles } from '../../types/types';
 
-// const API_KEY = '6acc09f802644746b9fafbaeda30a3d6';
 const API_KEY = 'cae8d4a0c7904ac88d9df23b23d9974e';
 
 const SearchBar: FC<Props> = ({ setState, sortBy, to, from, page, pageSize }) => {
   const [searchValue, setSearchValue] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  document.querySelector('.search-button')?.addEventListener('click', () => {
+    document.querySelector('.none')?.classList.add('no');
+  });
 
   const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
