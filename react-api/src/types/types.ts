@@ -15,6 +15,7 @@ export interface CardProps {
 
 export interface GET200_Articles {
   articles: Article[];
+  // totalResults: number;
 }
 
 export interface Props {
@@ -22,6 +23,8 @@ export interface Props {
   sortBy: SortType;
   to: string;
   from: string;
+  page: number;
+  pageSize: number;
 }
 
 export enum SortType {
@@ -38,3 +41,14 @@ export interface SortProps {
   to: string;
   setTo: (to: string) => void;
 }
+export interface paginationProps {
+  page: number;
+  onChangePage: (pageFromInput: number) => void;
+  pageSize: number;
+  // totalCard: number;
+}
+
+// export interface paginationProps {
+//   pageSize: number;
+//   page: number;
+// }

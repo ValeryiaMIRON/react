@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import { SortProps, SortType } from '../../types/types';
 import './sort.scss';
 
