@@ -18,6 +18,7 @@ const Dashboard = () => {
   // const lastCardIndex = page * pageSize;
   // const firstCardIndex = lastCardIndex - pageSize;
   // const currentCard = state.slice(firstCardIndex, lastCardIndex);
+  const paginate = (pageNumber: number) => setPage(pageNumber);
 
   return (
     <div className="dashboard">
@@ -37,14 +38,16 @@ const Dashboard = () => {
         to={to}
         setTo={setTo}
       />
-      {state.map((card, index) => {
-        return <Card key={index.toString()} card={card} />;
-      })}
       <Pagination
+        articles={state}
         page={page}
         pageSize={pageSize}
         onChangePage={(pageFromInput: number) => setPage(pageFromInput)}
+        paginate={paginate}
       />
+      {state.map((card, index) => {
+        return <Card key={index.toString()} card={card} />;
+      })}
     </div>
   );
 };
