@@ -1,3 +1,23 @@
 .selectedPage {
   font-weight: bold;
+  color: red;
 }
+
+.pagination-pageNumber {
+  display: flex;
+  justify-content: center;
+  //padding-top: 20px;
+  // position: absolute;
+  margin-bottom: 20px;
+}
+
+// .pagination {
+
+// }
+
+// span {
+//   border: 1px solid #5555;
+//   width: 30px;
+//   height: 30px;
+//   text-align: center;
+// }
