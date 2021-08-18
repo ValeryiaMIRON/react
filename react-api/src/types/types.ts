@@ -46,6 +46,8 @@ export interface paginationProps {
   onChangePage: (pageFromInput: number) => void;
   pageSize: number;
   // totalCard: number;
+  paginate: (pageNumber: number) => void;
+  articles: Article[];
 }
 
 // export interface paginationProps {
