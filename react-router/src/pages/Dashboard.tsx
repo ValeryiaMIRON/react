@@ -4,6 +4,7 @@ import Card from '../components/card/Card';
 import { Article, SortType } from '../types/types';
 import Sort from '../components/sort/Sort';
 import Pagination from '../components/paginataion/Pagination';
+import Header from '../components/header/Header';
 
 const Dashboard = () => {
   const [state, setState] = useState<Article[]>([]);
@@ -16,6 +17,7 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
+      <Header />
       <SearchBar
         page={page}
         pageSize={pageSize}
