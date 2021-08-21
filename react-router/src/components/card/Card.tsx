@@ -24,7 +24,7 @@ const Card: FC<CardProps> = ({ card }) => {
       <div className="card card-image">
         <span>Image: </span>
         <p>
-          <img src={card.urlToImage} alt={card.title} />
+          <img className="card-img" src={card.urlToImage} alt={card.title} />
         </p>
       </div>
     </div>
