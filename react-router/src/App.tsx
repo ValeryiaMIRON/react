@@ -1,54 +1,50 @@
-/* eslint-disable import/no-unresolved */
-/* eslint-disable import/prefer-default-export */
-import React, { FC, Suspense } from 'react';
-import { Switch, Route, Redirect, BrowserRouter } from 'react-router-dom';
-// import Posts from './pages/Posts';
+import React, { FC } from 'react';
+import { BrowserRouter as Router, Redirect, Route, Switch, useLocation } from 'react-router-dom';
 import './styles.scss';
-import { CSSTransition } from 'react-transition-group';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+
 import Dashboard from './pages/Dashboard';
 import About from './pages/About';
+import NotFound from './pages/NotFound';
 
-const navData = [
-  {
-    Component: <Dashboard />,
-    path: '/',
-  },
-  {
-    Component: <About />,
-    path: '/about',
-  },
-];
+const PagesAll = () => {
+  const location = useLocation();
+
+  return (
+    <div className="pages">
+      <TransitionGroup>
+        <CSSTransition timeout={300} classNames="page" key={location.key}>
+          <Switch location={location}>
+            <Route exact path="/">
+              <Dashboard />
+            </Route>
+            <Route exact path="/about">
+              <About />
+            </Route>
+            {/* <Route path={/details/:${titleUrl}}>
+                          <Details/>
+                      </Route> */}
+            <Route path="/error">
+              <NotFound />
+            </Route>
+            <Redirect to="/error">
+              <NotFound />
+            </Redirect>
+          </Switch>
+        </CSSTransition>
+      </TransitionGroup>
+    </div>
+  );
+};
 
 export const App: FC = () => {
   return (
-    <BrowserRouter>
-      <div className="App">
-        <Suspense fallback={<div>Loading...</div>}>
-          <Switch>
-            <div className="container">
-              {' '}
-              {navData.map(({ Component, path }): JSX.Element => {
-                return (
-                  <Route path={path} exact key={path.toString()}>
-                    {({ match }) => (
-                      <CSSTransition
-                        in={match != null}
-                        timeout={300}
-                        classNames="page"
-                        unmountOnExit
-                      >
-                        <div className="page">{Component}</div>
-                      </CSSTransition>
-                    )}
-                  </Route>
-                );
-              })}
-            </div>
-
-            <Redirect to="/" />
-          </Switch>
-        </Suspense>
+    <Router>
+      <div className="app">
+        <PagesAll />
       </div>
-    </BrowserRouter>
+    </Router>
   );
 };
+
+export default App;
