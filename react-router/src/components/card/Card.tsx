@@ -1,5 +1,7 @@
 import React, { FC } from 'react';
 import './card.scss';
+import { Link } from 'react-router-dom';
+
 import { CardProps } from '../../types/types';
 
 const Card: FC<CardProps> = ({ card }) => {
@@ -26,6 +28,9 @@ const Card: FC<CardProps> = ({ card }) => {
         <p>
           <img className="card-img" src={card.urlToImage} alt={card.title} />
         </p>
+      </div>
+      <div>
+        <Link to={`/details/${card.author}`}>View more</Link>
       </div>
     </div>
   );
