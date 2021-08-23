@@ -45,13 +45,11 @@ export interface paginationProps {
   page: number;
   onChangePage: (pageFromInput: number) => void;
   pageSize: number;
-  // totalCard: number;
   paginate: (pageNumber: number) => void;
   articles: Article[];
   setPageSize: (pageSize: number) => void;
 }
 
-// export interface paginationProps {
-//   pageSize: number;
-//   page: number;
-// }
+export interface detailsProps {
+  state: Article[];
+}
