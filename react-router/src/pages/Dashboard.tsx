@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import SearchBar from '../components/searchBar/SearchBar';
 import Card from '../components/card/Card';
 import { Article, SortType } from '../types/types';
 import Sort from '../components/sort/Sort';
 import Pagination from '../components/paginataion/Pagination';
 import Header from '../components/header/Header';
+import axiosInstance from '../services/api';
+
+// const API_KEY = 'cae8d4a0c7904ac88d9df23b23d9974e';
+const API_KEY = '2b25e657eb8d4fa594500785ceec5a2a';
 
 const Dashboard = () => {
   const [state, setState] = useState<Article[]>([]);
@@ -13,19 +17,26 @@ const Dashboard = () => {
   const [to, setTo] = useState('');
   const [page, setPage] = useState<number>(1);
   const [pageSize, setPageSize] = useState<number>(5);
+  const [searchData, setSearchData] = useState('t');
+
+  useEffect(() => {
+    try {
+      axiosInstance
+        .get(
+          `v2/everything?q=${searchData}&apiKey=${API_KEY}&sortBy=${sortBy}&from=${from}&to=${to}&pageSize=${pageSize}&page=${page}`,
+        )
+        .then((response) => setState(response.data.articles));
+    } catch (err: any) {
+      // console.error(err);
+    }
+  }, [from, page, pageSize, searchData, sortBy, state, to]);
+
   const paginate = (pageNumber: number) => setPage(pageNumber);
 
   return (
     <div className="dashboard">
       <Header />
-      <SearchBar
-        page={page}
-        pageSize={pageSize}
-        setState={setState}
-        sortBy={sortBy}
-        from={from}
-        to={to}
-      />
+      <SearchBar setSearchData={setSearchData} />
       <Sort
         setSortBy={setSortBy}
         sortBy={sortBy}

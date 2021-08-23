@@ -3,11 +3,11 @@ import React, { FC } from 'react';
 import { BrowserRouter as Router, Redirect, Route, Switch, useLocation } from 'react-router-dom';
 import './styles.scss';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-
 import Dashboard from './pages/Dashboard';
 import About from './pages/About';
 import NotFound from './pages/NotFound';
 import Details from './components/details/Details';
+import { Article } from './types/types';
 
 const PagesAll: FC = () => {
   const location = useLocation();
@@ -24,7 +24,7 @@ const PagesAll: FC = () => {
               <About />
             </Route>
 
-            <Route path="/details/:author">
+            <Route path="/details/:title">
               <Details />
             </Route>
             <Route path="/error">
@@ -40,7 +40,7 @@ const PagesAll: FC = () => {
   );
 };
 
-export const App: FC = () => {
+export const App: FC<Article> = () => {
   return (
     <Router>
       <div className="app">

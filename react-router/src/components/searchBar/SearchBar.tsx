@@ -1,12 +1,12 @@
-import { AxiosResponse } from 'axios';
+// import { AxiosResponse } from 'axios';
 import React, { ChangeEvent, FC, useState } from 'react';
-import axiosInstance from '../../services/api';
+// import axiosInstance from '../../services/api';
 import './searchBar.scss';
-import { Props, GET200_Articles } from '../../types/types';
+import { Props } from '../../types/types';
 
-const API_KEY = 'cae8d4a0c7904ac88d9df23b23d9974e';
+// const API_KEY = 'cae8d4a0c7904ac88d9df23b23d9974e';
 
-const SearchBar: FC<Props> = ({ setState, sortBy, to, from, page, pageSize }) => {
+const SearchBar: FC<Props> = ({ setSearchData }) => {
   const [searchValue, setSearchValue] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -17,16 +17,17 @@ const SearchBar: FC<Props> = ({ setState, sortBy, to, from, page, pageSize }) =>
   const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
-    try {
-      const response: AxiosResponse<GET200_Articles> = await axiosInstance.get(
-        `v2/everything?q=${searchValue}&apiKey=${API_KEY}&sortBy=${sortBy}&from=${from}&to=${to}&pageSize=${pageSize}&page=${page}`,
-      );
-      setState(response.data.articles);
-    } catch (err: any) {
-      // console.error(e);
-    } finally {
-      setIsLoading(false);
-    }
+    // try {
+    //   const response: AxiosResponse<GET200_Articles> = await axiosInstance.get(
+    //     `v2/everything?q=${searchValue}&apiKey=${API_KEY}&sortBy=${sortBy}&from=${from}&to=${to}&pageSize=${pageSize}&page=${page}`,
+    //   );
+    //   setState(response.data.articles);
+    // } catch (err: any) {
+    //   // console.error(e);
+    // } finally {
+    setSearchData(searchValue);
+    setIsLoading(false);
+    // }
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {

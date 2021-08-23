@@ -19,12 +19,13 @@ export interface GET200_Articles {
 }
 
 export interface Props {
-  setState: React.Dispatch<React.SetStateAction<Article[]>>;
-  sortBy: SortType;
-  to: string;
-  from: string;
-  page: number;
-  pageSize: number;
+  // setState: React.Dispatch<React.SetStateAction<Article[]>>;
+  // sortBy: SortType;
+  // to: string;
+  // from: string;
+  // page: number;
+  // pageSize: number;
+  setSearchData: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export enum SortType {
@@ -50,6 +51,6 @@ export interface paginationProps {
   setPageSize: (pageSize: number) => void;
 }
 
-export interface detailsProps {
-  state: Article[];
+export interface appProps {
+  title: string;
 }

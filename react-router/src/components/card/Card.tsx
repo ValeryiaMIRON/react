@@ -30,7 +30,7 @@ const Card: FC<CardProps> = ({ card }) => {
         </p>
       </div>
       <div>
-        <Link to={`/details/${card.author}`}>View more</Link>
+        <Link to={`/details/${card.title}`}>View more</Link>
       </div>
     </div>
   );
