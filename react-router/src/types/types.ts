@@ -52,7 +52,3 @@ export interface paginationProps {
   articles: Article[];
   setPageSize: (pageSize: number) => void;
 }
-
-export interface appProps {
-  searchData: string;
-}

@@ -7,6 +7,7 @@ import Sort from '../components/sort/Sort';
 import Pagination from '../components/paginataion/Pagination';
 import Header from '../components/header/Header';
 import axiosInstance from '../services/api';
+// import axiosInstance from '../services/api';
 
 // const API_KEY = 'cae8d4a0c7904ac88d9df23b23d9974e';
 const API_KEY = '2b9dd94d61b0487c8a64075d6312bf6c';
