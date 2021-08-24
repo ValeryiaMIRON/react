@@ -1,3 +1,24 @@
 // .details-container {
-//   height: 800px;
+//   //   max-width: 1440px;
+//   //   margin: 0 auto;
 // }
+
+.details-title {
+  text-align: center;
+}
+
+.details-subtitle {
+  //   display: flex;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.details-inf {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.details-subtitle_inf {
+  text-align: justify;
+  margin-bottom: 5px;
+}
