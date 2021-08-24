@@ -6,7 +6,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import Dashboard from './pages/Dashboard';
 import About from './pages/About';
 import NotFound from './pages/NotFound';
-import Details from './components/details/Details';
+import Details from './pages/details/Details';
 
 const PagesAll: FC = () => {
   const location = useLocation();
