@@ -14,7 +14,7 @@
   width: 220px;
 }
 
-span {
+.card-subtitle {
   padding-top: 10px;
   display: block;
 
@@ -56,4 +56,21 @@ p {
 }
 .card-image {
   background: #998673;
+}
+
+.card-link {
+  background: #808080;
+}
+
+.details-link {
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  margin-top: 10px;
+  color: black;
+  font-weight: bold;
+}
+
+.details-link:hover {
+  text-decoration: underline;
 }

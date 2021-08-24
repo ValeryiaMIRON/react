@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useEffect, useState } from 'react';
 import SearchBar from '../components/searchBar/SearchBar';
 import Card from '../components/card/Card';
@@ -8,7 +9,7 @@ import Header from '../components/header/Header';
 import axiosInstance from '../services/api';
 
 // const API_KEY = 'cae8d4a0c7904ac88d9df23b23d9974e';
-const API_KEY = '2b25e657eb8d4fa594500785ceec5a2a';
+const API_KEY = '2b9dd94d61b0487c8a64075d6312bf6c';
 
 const Dashboard = () => {
   const [state, setState] = useState<Article[]>([]);
@@ -17,7 +18,7 @@ const Dashboard = () => {
   const [to, setTo] = useState('');
   const [page, setPage] = useState<number>(1);
   const [pageSize, setPageSize] = useState<number>(5);
-  const [searchData, setSearchData] = useState('t');
+  const [searchData, setSearchData] = useState<string>('t');
 
   useEffect(() => {
     try {
@@ -29,7 +30,7 @@ const Dashboard = () => {
     } catch (err: any) {
       // console.error(err);
     }
-  }, [from, page, pageSize, searchData, sortBy, state, to]);
+  }, [from, page, pageSize, searchData, sortBy, to]);
 
   const paginate = (pageNumber: number) => setPage(pageNumber);
 

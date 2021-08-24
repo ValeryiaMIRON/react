@@ -7,7 +7,6 @@ import Dashboard from './pages/Dashboard';
 import About from './pages/About';
 import NotFound from './pages/NotFound';
 import Details from './components/details/Details';
-import { Article } from './types/types';
 
 const PagesAll: FC = () => {
   const location = useLocation();
@@ -40,7 +39,7 @@ const PagesAll: FC = () => {
   );
 };
 
-export const App: FC<Article> = () => {
+export const App: FC = () => {
   return (
     <Router>
       <div className="app">

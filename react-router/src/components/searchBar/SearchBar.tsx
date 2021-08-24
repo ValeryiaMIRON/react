@@ -10,24 +10,11 @@ const SearchBar: FC<Props> = ({ setSearchData }) => {
   const [searchValue, setSearchValue] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  document.querySelector('.search-button')?.addEventListener('click', () => {
-    document.querySelector('.none')?.classList.add('no');
-  });
-
   const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
-    // try {
-    //   const response: AxiosResponse<GET200_Articles> = await axiosInstance.get(
-    //     `v2/everything?q=${searchValue}&apiKey=${API_KEY}&sortBy=${sortBy}&from=${from}&to=${to}&pageSize=${pageSize}&page=${page}`,
-    //   );
-    //   setState(response.data.articles);
-    // } catch (err: any) {
-    //   // console.error(e);
-    // } finally {
     setSearchData(searchValue);
     setIsLoading(false);
-    // }
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {

@@ -10,9 +10,9 @@ const Pagination: FC<paginationProps> = ({ page, pageSize, paginate, articles, s
     pageNumber.push(i);
   }
 
-  document.querySelector('.pagination')?.addEventListener('click', () => {
-    document.querySelector('.no')?.classList.remove('no');
-  });
+  // document.querySelector('.pagination')?.addEventListener('click', () => {
+  //   document.querySelector('.no')?.classList.remove('no');
+  // });
 
   const handlePageSize = (e: ChangeEvent<HTMLSelectElement>) => {
     const { value } = e.target;

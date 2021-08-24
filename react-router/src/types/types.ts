@@ -7,6 +7,7 @@ export interface Article {
   source: { id: string; name: string };
   title: string;
   urlToImage: string;
+  url: string;
 }
 
 export interface CardProps {
@@ -25,7 +26,8 @@ export interface Props {
   // from: string;
   // page: number;
   // pageSize: number;
-  setSearchData: React.Dispatch<React.SetStateAction<string>>;
+  // setSearchData: React.Dispatch<React.SetStateAction<string>>;
+  setSearchData: (searchData: string) => void;
 }
 
 export enum SortType {
@@ -52,5 +54,5 @@ export interface paginationProps {
 }
 
 export interface appProps {
-  title: string;
+  searchData: string;
 }
