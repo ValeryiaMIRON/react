@@ -1,12 +1,10 @@
-// import { AxiosResponse } from 'axios';
 import React, { ChangeEvent, FC, useState } from 'react';
-// import axiosInstance from '../../services/api';
 import './searchBar.scss';
 import { Props } from '../../types/types';
 
 // const API_KEY = 'cae8d4a0c7904ac88d9df23b23d9974e';
 
-const SearchBar: FC<Props> = ({ setSearchData }) => {
+const SearchBar: FC<Props> = ({ setSearchData, paginate }) => {
   const [searchValue, setSearchValue] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -14,6 +12,7 @@ const SearchBar: FC<Props> = ({ setSearchData }) => {
     e.preventDefault();
     setIsLoading(true);
     setSearchData(searchValue);
+    paginate(1);
     setIsLoading(false);
   };
 

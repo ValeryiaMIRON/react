@@ -22,6 +22,7 @@ export interface GET200_Articles {
 
 export interface Props {
   setSearchData: (searchData: string) => void;
+  paginate: (pageNumber: number) => void;
 }
 
 export enum SortType {

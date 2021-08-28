@@ -38,7 +38,7 @@ const Dashboard = () => {
   return (
     <div className="dashboard">
       <Header />
-      <SearchBar setSearchData={setSearchData} />
+      <SearchBar setSearchData={setSearchData} paginate={paginate} />
       <Sort
         setSortBy={setSortBy}
         sortBy={sortBy}
