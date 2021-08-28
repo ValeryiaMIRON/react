@@ -19,12 +19,8 @@ export interface GET200_Articles {
 }
 
 export interface Props {
-  setState: React.Dispatch<React.SetStateAction<Article[]>>;
-  sortBy: SortType;
-  to: string;
-  from: string;
-  page: number;
-  pageSize: number;
+  setSearchData: (serchData: string) => void;
+  paginate: (pageNumber: number) => void;
 }
 
 export enum SortType {
