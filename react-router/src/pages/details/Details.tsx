@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import axios, { AxiosResponse } from 'axios';
 import React, { FC, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import axiosInstance from '../../services/api';
 import { Article } from '../../types/types';
 import './Details.scss';
@@ -13,7 +13,6 @@ const Details: FC = () => {
   const [currentCard, setCurrentCard] = useState<Article[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const { title }: { title: string } = useParams();
-
   useEffect(() => {
     setLoading(true);
 
@@ -26,7 +25,14 @@ const Details: FC = () => {
 
   return (
     <div className="details-container">
+      <div className="not-found-link-home">
+        <NavLink className="link-main-page" to="/">
+          Back to main page
+        </NavLink>
+      </div>
       <h1 className="details-title">Details</h1>
+      {/* <h3>{cards.title}</h3>
+      <p>{cards.author}</p> */}
       {currentCard
         .filter((card, index) => card.title === title && index === 0)
         .map((card, index) => {

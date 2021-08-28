@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import './card.scss';
 import { Link } from 'react-router-dom';
-
 import { CardProps } from '../../types/types';
 
 const Card: FC<CardProps> = ({ card }) => {
@@ -23,6 +22,7 @@ const Card: FC<CardProps> = ({ card }) => {
         <span className="card-subtitle">Published at: </span>
         <p className="published">{card.publishedAt}</p>
       </div>
+
       <div className="card card-image">
         <span className="card-subtitle">Image: </span>
         <p>

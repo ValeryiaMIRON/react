@@ -8,6 +8,7 @@ export interface Article {
   title: string;
   urlToImage: string;
   url: string;
+  id: string;
 }
 
 export interface CardProps {
@@ -20,13 +21,6 @@ export interface GET200_Articles {
 }
 
 export interface Props {
-  // setState: React.Dispatch<React.SetStateAction<Article[]>>;
-  // sortBy: SortType;
-  // to: string;
-  // from: string;
-  // page: number;
-  // pageSize: number;
-  // setSearchData: React.Dispatch<React.SetStateAction<string>>;
   setSearchData: (searchData: string) => void;
 }
 
