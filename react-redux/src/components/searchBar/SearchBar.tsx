@@ -1,24 +1,30 @@
-import React, { ChangeEvent, FC, useState } from 'react';
+import React, { ChangeEvent, FC } from 'react';
 import './searchBar.scss';
 import { Props } from '../../types/types';
-
-// const API_KEY = 'cae8d4a0c7904ac88d9df23b23d9974e';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { setIsLoading, setSearchValue } from '../../redux/reducer';
 
 const SearchBar: FC<Props> = ({ setSearchData, paginate }) => {
-  const [searchValue, setSearchValue] = useState<string>('');
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const searchInputValue = useAppSelector((state) => state.articles.searchValue);
+  const loading = useAppSelector((state) => state.articles.isLoading);
+  const dispatch = useAppDispatch();
+  // const [searchValue, setSearchValue] = useState<string>('');
+  // const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsLoading(true);
-    setSearchData(searchValue);
-    paginate(1);
-    setIsLoading(false);
+    // setIsLoading(true);
+    dispatch(setIsLoading(true));
+    setSearchData(searchInputValue); // как заменить setSearchData
+    paginate(1); // как заменить
+    // setIsLoading(false);
+    dispatch(setIsLoading(false));
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    setSearchValue(value);
+    dispatch(setSearchValue(value));
+    // setSearchValue(value);
   };
 
   return (
@@ -31,13 +37,13 @@ const SearchBar: FC<Props> = ({ setSearchData, paginate }) => {
             id="search"
             name="search"
             onChange={handleChange}
-            value={searchValue}
+            value={searchInputValue}
             placeholder="pie"
           />
         </label>
         <div className="button-wrapper">
-          <button type="submit" className="search-button" id="submit" disabled={isLoading}>
-            {isLoading ? 'Loading...' : 'Search'}
+          <button type="submit" className="search-button" id="submit" disabled={loading}>
+            {loading ? 'Loading...' : 'Search'}
           </button>
         </div>
       </form>
