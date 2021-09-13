@@ -20,7 +20,7 @@ const initialState: ArticlesState = {
   sortBy: SortType.relevancy,
   from: '',
   to: '',
-  searchData: 't',
+  searchData: '',
   page: 1,
   pageSize: 5,
 };
@@ -30,31 +30,31 @@ export const articleSlice = createSlice({
   initialState,
   reducers: {
     setArticle: (state, action) => {
-      state.article = action.payload;
+      state.article = action.payload.data;
     },
     setSearchValue: (state, action) => {
-      state.searchValue = action.payload;
+      state.searchValue = action.payload.value;
     },
     setIsLoading: (state, action) => {
       state.isLoading = action.payload;
     },
     setSortBy: (state, action) => {
-      state.sortBy = action.payload;
+      state.sortBy = action.payload.value;
     },
     setFrom: (state, action) => {
-      state.from = action.payload;
+      state.from = action.payload.value;
     },
     setTo: (state, action) => {
-      state.to = action.payload;
+      state.to = action.payload.value;
     },
     setSearchData: (state, action) => {
       state.searchData = action.payload;
     },
     setPage: (state, action) => {
-      state.page = action.payload;
+      state.page = action.payload.value;
     },
     setPageSize: (state, action) => {
-      state.pageSize = action.payload;
+      state.pageSize = action.payload.value;
     },
   },
 });
