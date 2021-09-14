@@ -1,29 +1,23 @@
 import React, { ChangeEvent, FC, useState } from 'react';
 import './searchBar.scss';
-import { Props } from '../../types/types';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { setIsLoading, setPage, setSearchData } from '../../redux/reducer';
 
-const SearchBar: FC<Props> = () => {
+const SearchBar: FC = () => {
   const loading = useAppSelector((state) => state.articles.isLoading);
   const dispatch = useAppDispatch();
   const [searchValue, setSearchValue] = useState<string>('');
-  // const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(setIsLoading(true));
     dispatch(setSearchData(searchValue));
-    // paginate(1); // как заменить
-    // dispatch(setPage(1));
-    // dispatch(setPage({ value: 1 }));
     dispatch(setPage(1));
     dispatch(setIsLoading(false));
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    // dispatch(setSearchValue(value));
     setSearchValue(value);
   };
 

@@ -1,11 +1,14 @@
 import React, { ChangeEvent, FC } from 'react';
-import { useAppDispatch } from '../../redux/hooks';
-import { setPage } from '../../redux/reducer';
-import { paginationProps } from '../../types/types';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { setPage, setPageSize } from '../../redux/reducer';
+
 import './Pagination.scss';
 
-const Pagination: FC<paginationProps> = ({ page, pageSize, articles, setPageSize }) => {
+const Pagination: FC = () => {
   const dispatch = useAppDispatch();
+  const page = useAppSelector((state) => state.articles.page);
+  const article = useAppSelector((state) => state.articles.article);
+  const pageSize = useAppSelector((state) => state.articles.pageSize);
   const pageNumber = [];
 
   for (let i = 1; i <= Math.ceil(100 / pageSize); i += 1) {
@@ -14,14 +17,13 @@ const Pagination: FC<paginationProps> = ({ page, pageSize, articles, setPageSize
 
   const handlePageSize = (e: ChangeEvent<HTMLSelectElement>) => {
     const { value } = e.target;
-    setPageSize(Number(value));
+    dispatch(setPageSize(Number(value)));
     dispatch(setPage(1));
-    // paginate(1);
   };
 
   return (
     <div className="pagination">
-      {articles.length ? (
+      {article.length ? (
         <div className="pagination-wrapper">
           <div className="pagination-pageNumber">
             <div className="none no" style={{ color: 'red' }} />

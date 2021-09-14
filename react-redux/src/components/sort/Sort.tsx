@@ -1,8 +1,14 @@
 import React, { FC } from 'react';
-import { SortProps, SortType } from '../../types/types';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { setFrom, setSortBy, setTo } from '../../redux/reducer';
+import { SortType } from '../../types/types';
 import './sort.scss';
 
-const Sort: FC<SortProps> = ({ sortBy, setSortBy, from, to, setFrom, setTo }) => {
+const Sort: FC = () => {
+  const dispatch = useAppDispatch();
+  const sortBy = useAppSelector((state) => state.articles.sortBy);
+  const inputDateFrom = useAppSelector((state) => state.articles.from);
+  const inputDateTo = useAppSelector((state) => state.articles.to);
   const calendar = () => {
     const today = new Date();
     const dd = String(today.getDate()).padStart(2, '0');
@@ -21,7 +27,7 @@ const Sort: FC<SortProps> = ({ sortBy, setSortBy, from, to, setFrom, setTo }) =>
               type="radio"
               value={SortType.relevancy}
               checked={sortBy === SortType.relevancy}
-              onChange={() => setSortBy(SortType.relevancy)}
+              onChange={() => dispatch(setSortBy(SortType.relevancy))}
             />
             relevancy
           </label>
@@ -31,7 +37,7 @@ const Sort: FC<SortProps> = ({ sortBy, setSortBy, from, to, setFrom, setTo }) =>
               type="radio"
               value={SortType.popularity}
               checked={sortBy === SortType.popularity}
-              onChange={() => setSortBy(SortType.popularity)}
+              onChange={() => dispatch(setSortBy(SortType.popularity))}
             />
             popularity
           </label>
@@ -41,7 +47,7 @@ const Sort: FC<SortProps> = ({ sortBy, setSortBy, from, to, setFrom, setTo }) =>
               type="radio"
               value={SortType.publishedAt}
               checked={sortBy === SortType.publishedAt}
-              onChange={() => setSortBy(SortType.publishedAt)}
+              onChange={() => dispatch(setSortBy(SortType.publishedAt))}
             />
             publishedAt
           </label>
@@ -52,9 +58,9 @@ const Sort: FC<SortProps> = ({ sortBy, setSortBy, from, to, setFrom, setTo }) =>
             <input
               type="date"
               name="dateFrom"
-              value={from}
+              value={inputDateFrom}
               max={calendar()}
-              onChange={(e) => setFrom(e.target.value)}
+              onChange={(e) => dispatch(setFrom(e.target.value))}
             />
           </label>
           <label htmlFor="dateTo">
@@ -62,8 +68,8 @@ const Sort: FC<SortProps> = ({ sortBy, setSortBy, from, to, setFrom, setTo }) =>
             <input
               type="date"
               max={calendar()}
-              value={to}
-              onChange={(e) => setTo(e.target.value)}
+              value={inputDateTo}
+              onChange={(e) => dispatch(setTo(e.target.value))}
             />
           </label>
         </div>
