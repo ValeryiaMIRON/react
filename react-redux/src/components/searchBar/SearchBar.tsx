@@ -1,30 +1,30 @@
-import React, { ChangeEvent, FC } from 'react';
+import React, { ChangeEvent, FC, useState } from 'react';
 import './searchBar.scss';
 import { Props } from '../../types/types';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { setIsLoading, setSearchValue } from '../../redux/reducer';
+import { setIsLoading, setPage, setSearchData } from '../../redux/reducer';
 
-const SearchBar: FC<Props> = ({ setSearchData, paginate }) => {
-  const searchInputValue = useAppSelector((state) => state.articles.searchValue);
+const SearchBar: FC<Props> = () => {
   const loading = useAppSelector((state) => state.articles.isLoading);
   const dispatch = useAppDispatch();
-  // const [searchValue, setSearchValue] = useState<string>('');
+  const [searchValue, setSearchValue] = useState<string>('');
   // const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // setIsLoading(true);
     dispatch(setIsLoading(true));
-    setSearchData(searchInputValue); // как заменить setSearchData
-    paginate(1); // как заменить
-    // setIsLoading(false);
+    dispatch(setSearchData(searchValue));
+    // paginate(1); // как заменить
+    // dispatch(setPage(1));
+    // dispatch(setPage({ value: 1 }));
+    dispatch(setPage(1));
     dispatch(setIsLoading(false));
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    dispatch(setSearchValue(value));
-    // setSearchValue(value);
+    // dispatch(setSearchValue(value));
+    setSearchValue(value);
   };
 
   return (
@@ -37,7 +37,7 @@ const SearchBar: FC<Props> = ({ setSearchData, paginate }) => {
             id="search"
             name="search"
             onChange={handleChange}
-            value={searchInputValue}
+            value={searchValue}
             placeholder="pie"
           />
         </label>

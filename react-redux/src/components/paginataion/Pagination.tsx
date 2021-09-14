@@ -1,9 +1,11 @@
 import React, { ChangeEvent, FC } from 'react';
-
+import { useAppDispatch } from '../../redux/hooks';
+import { setPage } from '../../redux/reducer';
 import { paginationProps } from '../../types/types';
 import './Pagination.scss';
 
-const Pagination: FC<paginationProps> = ({ page, pageSize, paginate, articles, setPageSize }) => {
+const Pagination: FC<paginationProps> = ({ page, pageSize, articles, setPageSize }) => {
+  const dispatch = useAppDispatch();
   const pageNumber = [];
 
   for (let i = 1; i <= Math.ceil(100 / pageSize); i += 1) {
@@ -13,7 +15,8 @@ const Pagination: FC<paginationProps> = ({ page, pageSize, paginate, articles, s
   const handlePageSize = (e: ChangeEvent<HTMLSelectElement>) => {
     const { value } = e.target;
     setPageSize(Number(value));
-    paginate(1);
+    dispatch(setPage(1));
+    // paginate(1);
   };
 
   return (
@@ -21,9 +24,7 @@ const Pagination: FC<paginationProps> = ({ page, pageSize, paginate, articles, s
       {articles.length ? (
         <div className="pagination-wrapper">
           <div className="pagination-pageNumber">
-            <div className="none no" style={{ color: 'red' }}>
-              * Нажмите на кнопку Search
-            </div>
+            <div className="none no" style={{ color: 'red' }} />
 
             {pageNumber.map((number) => (
               <button
@@ -31,7 +32,7 @@ const Pagination: FC<paginationProps> = ({ page, pageSize, paginate, articles, s
                 id="selectedPageButton"
                 className={page === number ? 'selectedPage' : 'null'}
                 key={number}
-                onClick={() => paginate(number)}
+                onClick={() => dispatch(setPage(number))}
               >
                 {number}
               </button>

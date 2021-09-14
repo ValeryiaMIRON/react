@@ -7,6 +7,8 @@ import Sort from '../components/sort/Sort';
 import Pagination from '../components/paginataion/Pagination';
 import Header from '../components/header/Header';
 import axiosInstance from '../services/api';
+import { useAppSelector } from '../redux/hooks';
+import { setPage } from '../redux/reducer';
 // import axiosInstance from '../services/api';
 
 // const API_KEY = 'cae8d4a0c7904ac88d9df23b23d9974e';
@@ -17,9 +19,13 @@ const Dashboard = () => {
   const [sortBy, setSortBy] = useState<SortType>(SortType.relevancy);
   const [from, setFrom] = useState('');
   const [to, setTo] = useState('');
-  const [page, setPage] = useState<number>(1);
+  // const [page, setPage] = useState<number>(1);
   const [pageSize, setPageSize] = useState<number>(5);
-  const [searchData, setSearchData] = useState<string>('t');
+  // const [searchData, setSearchData] = useState<string>('t');
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  const searchData = useAppSelector((state) => state.articles.searchData);
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  const page = useAppSelector((state) => state.articles.page);
 
   useEffect(() => {
     try {
@@ -33,12 +39,12 @@ const Dashboard = () => {
     }
   }, [from, page, pageSize, searchData, sortBy, to]);
 
-  const paginate = (pageNumber: number) => setPage(pageNumber);
+  // const paginate = (pageNumber: number) => setPage(pageNumber);
 
   return (
     <div className="dashboard">
       <Header />
-      <SearchBar setSearchData={setSearchData} paginate={paginate} />
+      <SearchBar />
       <Sort
         setSortBy={setSortBy}
         sortBy={sortBy}
@@ -52,7 +58,7 @@ const Dashboard = () => {
         page={page}
         pageSize={pageSize}
         onChangePage={(pageFromInput: number) => setPage(pageFromInput)}
-        paginate={paginate}
+        // paginate={paginate}
         setPageSize={setPageSize}
       />
       {state.map((card, index) => {
