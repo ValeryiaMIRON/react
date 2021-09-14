@@ -21,8 +21,8 @@ export interface GET200_Articles {
 }
 
 export interface Props {
-  setSearchData: (searchData: string) => void;
-  paginate: (pageNumber: number) => void;
+  // setSearchData: (searchData: string) => void;
+  // paginate: (pageNumber: number) => void;
 }
 
 export enum SortType {
@@ -43,7 +43,7 @@ export interface paginationProps {
   page: number;
   onChangePage: (pageFromInput: number) => void;
   pageSize: number;
-  paginate: (pageNumber: number) => void;
+  // paginate: (pageNumber: number) => void;
   articles: Article[];
   setPageSize: (pageSize: number) => void;
 }
