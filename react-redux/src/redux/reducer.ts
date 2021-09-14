@@ -15,7 +15,6 @@ export interface ArticlesState {
 
 const initialState: ArticlesState = {
   article: [],
-  // searchValue: '',
   isLoading: false,
   sortBy: SortType.relevancy,
   from: '',
@@ -30,22 +29,19 @@ export const articleSlice = createSlice({
   initialState,
   reducers: {
     setArticle: (state, action) => {
-      state.article = action.payload.data;
+      state.article = action.payload;
     },
-    // setSearchValue: (state, action) => {
-    //   state.searchValue = action.payload.value;
-    // },
     setIsLoading: (state, action) => {
       state.isLoading = action.payload;
     },
     setSortBy: (state, action) => {
-      state.sortBy = action.payload.value;
+      state.sortBy = action.payload;
     },
     setFrom: (state, action) => {
-      state.from = action.payload.value;
+      state.from = action.payload;
     },
     setTo: (state, action) => {
-      state.to = action.payload.value;
+      state.to = action.payload;
     },
     setSearchData: (state, action) => {
       state.searchData = action.payload;
@@ -54,14 +50,13 @@ export const articleSlice = createSlice({
       state.page = action.payload;
     },
     setPageSize: (state, action) => {
-      state.pageSize = action.payload.value;
+      state.pageSize = action.payload;
     },
   },
 });
 
 export const {
   setArticle,
-  // setSearchValue,
   setIsLoading,
   setSortBy,
   setFrom,
