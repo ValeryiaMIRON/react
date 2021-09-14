@@ -3,7 +3,7 @@ import { Article, SortType } from '../types/types';
 
 export interface ArticlesState {
   article: Article[];
-  searchValue: string;
+  // searchValue: string;
   isLoading: boolean;
   sortBy: SortType;
   from: string;
@@ -15,12 +15,12 @@ export interface ArticlesState {
 
 const initialState: ArticlesState = {
   article: [],
-  searchValue: '',
+  // searchValue: '',
   isLoading: false,
   sortBy: SortType.relevancy,
   from: '',
   to: '',
-  searchData: '',
+  searchData: 't',
   page: 1,
   pageSize: 5,
 };
@@ -32,9 +32,9 @@ export const articleSlice = createSlice({
     setArticle: (state, action) => {
       state.article = action.payload.data;
     },
-    setSearchValue: (state, action) => {
-      state.searchValue = action.payload.value;
-    },
+    // setSearchValue: (state, action) => {
+    //   state.searchValue = action.payload.value;
+    // },
     setIsLoading: (state, action) => {
       state.isLoading = action.payload;
     },
@@ -51,7 +51,7 @@ export const articleSlice = createSlice({
       state.searchData = action.payload;
     },
     setPage: (state, action) => {
-      state.page = action.payload.value;
+      state.page = action.payload;
     },
     setPageSize: (state, action) => {
       state.pageSize = action.payload.value;
@@ -61,7 +61,7 @@ export const articleSlice = createSlice({
 
 export const {
   setArticle,
-  setSearchValue,
+  // setSearchValue,
   setIsLoading,
   setSortBy,
   setFrom,
