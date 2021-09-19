@@ -1,0 +1,19 @@
+.selectedPage {
+  font-weight: bold;
+  color: red;
+}
+
+.pagination-pageNumber {
+  display: flex;
+  margin-right: 20px;
+}
+
+.pagination-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.no {
+  display: none;
+}
